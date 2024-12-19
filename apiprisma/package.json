@@ -1,5 +1,5 @@
 {
-  "name": "caixaapimysql",
+  "name": "caixaapiprisma",
   "version": "1.0.0",
   "description": "API Node.js com TypeScript e MySQL",
   "main": "src/index.ts",
@@ -9,17 +9,20 @@
   "keywords": [],
   "author": "wellifabio",
   "license": "ISC",
-  "dependencies": {
-    "@types/express": "^5.0.0",
-    "@types/typescript": "^0.4.29",
-    "cors": "^2.8.5",
-    "express": "^4.21.2",
-    "mysql2": "^3.11.5",
-    "nodemon": "^3.1.9",
-    "ts-node": "^10.9.2",
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/node": "^22.10.2",
+    "prisma": "^6.1.0",
+    "tsx": "^4.19.2",
     "typescript": "^5.7.2"
   },
-  "devDependencies": {
-    "@types/cors": "^2.8.17"
+  "dependencies": {
+    "@prisma/client": "^6.1.0",
+    "@types/express": "^5.0.0",
+    "@types/typescript": "^2.0.0",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "nodemon": "^3.1.9",
+    "ts-node": "^10.9.2"
   }
 }

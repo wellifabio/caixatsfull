@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { UsuarioRepository } from '../repositories/Usuario';
+import { UsuarioRepository } from '../models/repositories/Usuario';
 
 const usuario = new UsuarioRepository();
 
@@ -43,7 +43,7 @@ export class UsuarioController {
         try {
             const user = req.body
             const updatedUser = await usuario.update(user);
-            if (updatedUser) res.json(updatedUser);
+            if (updatedUser) res.status(202).json(updatedUser).end();
             else res.status(404).end();
         } catch (error) {
             res.status(500).json({ error: error });

@@ -1,9 +1,9 @@
-import connection from "../dao/db"
-import { IUsuario } from "../models/Usuario"
+import connection from "../../dao/db"
+import { IUsuario } from "../Usuario"
 import { OkPacket } from "mysql2"
 
 export class UsuarioRepository {
-    
+
     create(usuario: IUsuario): Promise<IUsuario> {
         return new Promise((resolve, reject) => {
             connection.query<OkPacket>(

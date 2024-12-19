@@ -180,7 +180,7 @@ function excluirLancamento(id) {
         })
             .then((resp) => resp.status)
             .then((status) => {
-                if (status === 200) {
+                if (status === 204) {
                     alert("Lançamento excluído com sucesso!");
                     window.location.reload();
                 } else {
@@ -226,7 +226,7 @@ function editarLancamento(id){
         })
             .then((resp) => resp.status)
             .then((status) => {
-                if (status === 200) {
+                if (status === 202) {
                     alert("Lançamento alterado com sucesso!");
                     window.location.reload();
                 } else {

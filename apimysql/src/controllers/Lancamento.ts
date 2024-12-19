@@ -1,13 +1,13 @@
 import { Request, Response } from 'express';
-import { LancamentoRepository } from '../repositories/Lancamento';
+import { LancamentoRepository } from '../models/repositories/Lancamento';
 
-const Lancamento = new LancamentoRepository();
+const lancamento = new LancamentoRepository();
 
 export class LancamentoController {
 
     async create(req: Request, res: Response) {
         try {
-            const id = await Lancamento.create(req.body);
+            const id = await lancamento.create(req.body);
             res.status(201).json({ id: id });
         } catch (error) {
             res.status(500).json({ error: error });
@@ -16,7 +16,7 @@ export class LancamentoController {
 
     async readAll(req: Request, res: Response) {
         try {
-            const Lancamentos = await Lancamento.readAll();
+            const Lancamentos = await lancamento.readAll();
             res.json(Lancamentos);
         } catch (error) {
             res.status(500).json({ error: error });
@@ -26,7 +26,18 @@ export class LancamentoController {
     async readById(req: Request, res: Response) {
         try {
             const id = Number(req.params.id);
-            const user = await Lancamento.readById(id);
+            const lanc = await lancamento.readById(id);
+            if (lanc) res.json(lanc);
+            else res.status(404).end();
+        } catch (error) {
+            res.status(500).json({ error: error });
+        }
+    }
+
+    async readByDate(req: Request, res: Response) {
+        try {
+            const date = new Date(req.params.date);
+            const user = await lancamento.readByDate(date);
             if (user) res.json(user);
             else res.status(404).end();
         } catch (error) {
@@ -36,8 +47,8 @@ export class LancamentoController {
 
     async update(req: Request, res: Response) {
         try {
-            await Lancamento.update(req.body);
-            res.status(204).end();
+            await lancamento.update(req.body);
+            res.status(202).end();
         } catch (error) {
             res.status(500).json({ error: error });
         }
@@ -46,7 +57,7 @@ export class LancamentoController {
     async delete(req: Request, res: Response) {
         try {
             const id = Number(req.params.id);
-            await Lancamento.remove(id);
+            await lancamento.remove(id);
             res.status(204).end();
         } catch (error) {
             res.status(500).json({ error: error });

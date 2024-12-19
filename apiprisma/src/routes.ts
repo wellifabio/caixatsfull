@@ -1,6 +1,6 @@
 import { Application } from "express";
-import { UsuarioController } from "../controllers/Usuario";
-import { LancamentoController } from "../controllers/Lancamento";
+import { UsuarioController } from "./controllers/Usuario";
+import { LancamentoController } from "./controllers/Lancamento";
 
 const usuario = new UsuarioController();
 const lancamento = new LancamentoController();

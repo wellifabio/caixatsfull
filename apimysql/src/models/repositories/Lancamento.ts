@@ -1,5 +1,5 @@
-import connection from "../dao/db"
-import { ILancamento } from "../models/Lancamento"
+import connection from "../../dao/db"
+import { ILancamento } from "../Lancamento"
 import { OkPacket } from "mysql2"
 
 export class LancamentoRepository {
@@ -20,6 +20,19 @@ export class LancamentoRepository {
                 (err, res) => {
                     if (err) reject(err)
                     else resolve(res?.[0])
+                }
+            )
+        })
+    }
+
+    readByDate(date: Date): Promise<ILancamento[]> {
+        return new Promise((resolve, reject) => {
+            connection.query<ILancamento[]>(
+                "SELECT * FROM Lancamento WHERE data LIKE ?",
+                [date.toISOString().slice(0, 10)+'%'],
+                (err, res) => {
+                    if (err) reject(err)
+                    else resolve(res)
                 }
             )
         })
